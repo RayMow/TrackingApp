@@ -79,26 +79,6 @@ function runOnLoad() {
         autocomplete(document.getElementById("rtnNo"), rtnHist);
     }
 
-
-    //Viewmode 
-    if (localStorage.getItem("viewMode")) {
-        var vMode = localStorage.getItem("viewMode");
-        if (vMode == "overview") {
-            setTimeout(function () {
-                var podGroups = document.getElementsByClassName("podGroup");
-                var futureGroups = document.getElementsByClassName("futurePin");
-                var comments = document.getElementsByClassName("commentContainer");
-
-                for (i = 0; i < podGroups.length; i++) {
-                    podGroups[i].style = "flex-basis: 350px;";
-                    comments[i].style = "transform: matrix(0.5, 0, 0, 0.5, 50, 0);";
-                }
-                for (i = 0; i < futureGroups.length; i++) {
-                    futureGroups[i].style = "flex-basis: 350px;";
-                }
-            }, 1000);
-        }
-    }
     //For Sorting function
     pageLoad = true
     //setTimeout(function () { sortGroups() }, 5000);
@@ -1125,62 +1105,6 @@ function updateCssRule(ruleName, ruleProperty, newValue) {
 
     }
 
-}
-
-function overviewMode() {
-
-    if (localStorage.getItem("viewMode")) {
-        var vMode = localStorage.getItem("viewMode");
-        if (vMode === "overview") {
-            localStorage.setItem("viewMode", "normal");
-            var podGroups = document.getElementsByClassName("podGroup");
-            var podImgs = document.getElementsByClassName("podImageData");
-            var futureGroups = document.getElementsByClassName("futurePin");
-            var comments = document.getElementsByClassName("commentContainer");
-
-            for (i = 0; i < podGroups.length; i++) {
-
-                var styles = document.getElementsByTagName("STYLE");
-                console.info(getMatchedCSSRules(podGroups[i]));
-
-                //podGroups[i].style = "margin-bottom: -200px;box-shadow: -3px -3px 20px #aab2bd;";
-                //comments[i].style = "transform: matrix(-0.5, 0, 0, -0.5, -50, 0);";
-            }
-            for (i = 0; i < futureGroups.length; i++) {
-                futureGroups[i].style = "flex-basis: 740px;";
-            }
-        } else {
-            localStorage.setItem("viewMode", "overview");
-            var podGroups = document.getElementsByClassName("podGroup");
-            var futureGroups = document.getElementsByClassName("futurePin");
-            var comments = document.getElementsByClassName("commentContainer");
-
-            //document.getElementById("output").style="transform: scale(0.5, 0.5);column-count: 2;width: 200%; flex: 100%; max-width: 50%;";
-            //document.getElementById("output").style="transform: scale(0.5, 0.5);  flex: 50%; max-width: 50%;";
-            for (i = 0; i < podGroups.length; i++) {
-                podGroups[i].style = "flex-basis: 350px;";
-                comments[i].style = "transform: matrix(0.5, 0, 0, 0.5, 50, 0);";
-            }
-            for (i = 0; i < futureGroups.length; i++) {
-                futureGroups[i].style = "flex-basis: 350px;";
-            }
-        }
-    } else {
-        localStorage.setItem("viewMode", "overview");
-        var podGroups = document.getElementsByClassName("podGroup");
-        var futureGroups = document.getElementsByClassName("futurePin");
-        var comments = document.getElementsByClassName("commentContainer");
-
-        //document.getElementById("output").style="transform: scale(0.5, 0.5);column-count: 2;width: 200%; flex: 100%; max-width: 50%;";
-        //document.getElementById("output").style="transform: scale(0.5, 0.5);  flex: 50%; max-width: 50%;";
-        for (i = 0; i < podGroups.length; i++) {
-            podGroups[i].style = "flex-basis: 350px;";
-            comments[i].style = "transform: matrix(0.5, 0, 0, 0.5, 50, 0);";
-        }
-        for (i = 0; i < futureGroups.length; i++) {
-            futureGroups[i].style = "flex-basis: 350px;";
-        }
-    }
 }
 
 function podOpenNew(pod) {

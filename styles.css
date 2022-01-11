@@ -168,13 +168,14 @@
 			box-sizing: border-box;
 			flex-grow: 1;
 			border: 1px solid #999fa3;
-			padding: 0 .5625rem;
+			/* padding: 0 .5625rem; */
 			order: 2;
 			outline: 0;
 			height: 2.4rem;
 			color: #333f48;
 			font-family: TNT, Arial, Helvetica, sans-serif;
 			font-weight: 300;
+            text-align: center;
 			line-height: 1.5;
 			box-shadow: 1px 2px 4px grey inset;
 		}
@@ -455,7 +456,7 @@
 		}
 
 		.infoModal {
-			/* line-height: 1.8; */
+			line-height: 1.8;
 			font-family: TNT, Arial, Helvetica, sans-serif;
 			top: 30px;
 			position: relative;
@@ -470,6 +471,8 @@
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			z-index: 11;
 			display: none;
+            overflow-y: scroll;
+            height: 90%;
 		}
 
 		.infoModal h1 {

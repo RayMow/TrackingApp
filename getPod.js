@@ -743,10 +743,18 @@ function openPODImage(podObj, logData) {
     } else {
         var signature = ""
     }
-    //POD Image
-    var podImage = document.getElementById(logData[5]).innerHTML = "<p>" + signature + "</p><img src='" + podurl + "' class='pod' alt='No POD Image yet' ondblclick='podOpenNew(this)' id='thisPod' onerror='noPODYet(" + logData[5] +
-        ")' ><a href='mailto:sales@communityplaythings.co.uk?subject=" + recordName + "%20POD%20Request[]&body=Requested%20POD%20below%20for%20order%20" + recordName +
-        ":%0D%0A%20' class='controlBtn' id='mail" + logData[5] + "'style='float: none;'>&#9993;</a>"
+
+    if (podurl !== null) {
+        //POD Image
+        var podImage = document.getElementById(logData[5]).innerHTML = "<p>" + signature + "</p><img src='" + podurl + "' class='pod' alt='No POD Image yet' ondblclick='podOpenNew(this)' id='thisPod' onerror='noPODYet(" + logData[5] +
+            ")' ><a href='mailto:sales@communityplaythings.co.uk?subject=" + recordName + "%20POD%20Request[]&body=Requested%20POD%20below%20for%20order%20" + recordName +
+            ":%0D%0A%20' class='controlBtn' id='mail" + logData[5] + "'style='float: none;'>&#9993;</a>"
+    } else {
+        //POD Image
+        var podImage = document.getElementById(logData[5]).innerHTML = "<p>" + signature + "</p><a href='mailto:sales@communityplaythings.co.uk?subject=" + recordName + "%20POD%20Request[]&body=Requested%20POD%20below%20for%20order%20" + recordName +
+            ":%0D%0A%20' class='controlBtn' id='mail" + logData[5] + "'style='float: none;'>&#9993;</a>"
+    }
+
 }
 
 

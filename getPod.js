@@ -234,14 +234,14 @@ function getAccountNumber() {
             //Value exists..
             var accountNum = localStorage.getItem("TNTAccountNumber");
         } else {
-            var accountNum = prompt("Enter TNT Account Number", "0005375762");
+            var accountNum = prompt("Enter TNT Account Number", "");
             if (accountNum !== null) {
                 //Save in Local Storage
                 localStorage.setItem("TNTAccountNumber", accountNum);
             }
         }
     } else {
-        var accountNum = prompt("Enter TNT Account Number", "0005375762");
+        var accountNum = prompt("Enter TNT Account Number", "");
         console.info("Sorry, your browser does not support web storage...");
     }
     document.getElementById("accountNo").innerHTML = "Account: " + accountNum
@@ -257,7 +257,7 @@ function setAccountNum() {
         //Save in Local Storage
         localStorage.setItem("TNTAccountNumber", newAccountNum);
         accountNumber = newAccountNum;
-        document.getElementById("accountNo").innerHTML = "Account: " + accountNumber
+        document.getElementById("accountNo").innerHTML = "Current Account: " + accountNumber + " (Click to change)";
     }
 }
 

@@ -1276,9 +1276,9 @@ function showPinStatusModal() {
         var custRef = document.getElementById(pinNumber).getElementsByTagName("b")[0].innerHTML;
         var currentStatus = document.getElementById(pinNumber).getElementsByClassName("status")[0].innerHTML;
 
-        document.getElementById("pinStatList").innerHTML += "<p style='padding-left:5px;' ><span class='icon' style='font-size: 15px;' onclick='unpinMe(" +
+        document.getElementById("pinStatList").innerHTML += "<p style='' ><span class='icon' style='font-size: 15px;' onclick='unpinMe(" +
             pinNumber + ")'>&#128204;</span><strong>" + custRef + "</strong>     <span id='ModalComment" + pinNumber + "' class='modalComment' contenteditable='true'>" +
-            pinComment + "</span><p style='padding-left:100px;padding-bottom:20px;'><span style='color:#a1a09f;'>Status: </span>" + currentStatus + "</p>"
+            pinComment + "</span><p style='padding-left:30px;'><span style='color:#a1a09f;'>Status: </span>" + currentStatus + "</p>"
     }
     on('pinStatModal');
 }

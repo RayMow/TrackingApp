@@ -480,9 +480,8 @@
 		}
 
 		#pinStatList {
-			max-height: 580px;
-			overflow: scroll;
-			scrollbar-width: thin;
+			/* max-height: 580px; */
+			/* overflow-Y: scroll; */
 		}
 
 		.icon {

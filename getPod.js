@@ -961,7 +961,7 @@ function showPinned(podId) {
                     thisPin.style.opacity = "1.0";
                     thisComment.style.display = "block";
                     thisComment.parentElement.style.display = "block";
-                    thisComment.innerHTML = pinComment;
+                    thisComment.innerHTML = pinComment+" "+taskGuid;
                     thisComment.ondblclick = function () { openDynamics(taskGuid) };
                     //dueDate.value = pinDate;
                     //dueDate.defaultValue = pinDate;

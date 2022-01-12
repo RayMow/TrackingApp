@@ -45,7 +45,7 @@
 			margin-left: 20px;
 			margin-right: 20px;
 			border: 1px solid #d7d7d7;
-			background-color: whitesmoke;
+			background-color: white;
 			flex-basis: 740px;
 			box-shadow: 0px 3px 2px #aab2bd;
 			z-index: 0;
@@ -148,7 +148,7 @@
 			margin: 30px;
 			width: 80%;
 			max-width: 832px;
-			border: 1px solid #dedede;
+			border: 1px solid #3a3939;
 		}
 
 		.podImageData {

@@ -977,6 +977,7 @@ function showPinned(podId) {
 }
 
 function openDynamics(guid) {
+    console.info("openDynamics: " + guid);
     var taskUrl = "https://cpuk.crm11.dynamics.com/main.aspx?etn=task&id=" + guid + "&newWindow=true&pagetype=entityrecord";
     window.open(taskUrl, '_blank', 'location=yes,height=1000,width=1200,scrollbars=yes,status=yes');
 }

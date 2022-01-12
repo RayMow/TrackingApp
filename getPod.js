@@ -8,6 +8,7 @@ function runOnLoad() {
     results = [];
     quietLoadOn = false;
     updateCount = 0;
+    navigator.clearAppBadge();
     var orderInput = document.getElementById("orderNo");
     var conInput = document.getElementById("conNo");
     var rtnInput = document.getElementById("rtnNo");
@@ -244,7 +245,7 @@ function getAccountNumber() {
         var accountNum = prompt("Enter TNT Account Number", "");
         console.info("Sorry, your browser does not support web storage...");
     }
-    document.getElementById("accountNo").innerHTML = "Account: " + accountNum
+    document.getElementById("accountNo").innerHTML = "Current Account: " + accountNum+" (Click to change)"
     return accountNum
 }
 
@@ -287,6 +288,9 @@ function addBadge(count) {
 
     // Replace favicon
     favicon.href = canvas.toDataURL('image/png');
+
+    //For taskbar...
+    navigator.setAppBadge(count);
 
 };
 
@@ -494,7 +498,6 @@ function retrievePOD(orderObj) {
         //redBorder();
     }
 }
-
 
 //from page onload
 function loadFuturePin(uinput, commentText) {

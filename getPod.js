@@ -327,7 +327,7 @@ function quietCheckForUpdates(orderObj) {
             }
 
             //assembleUrl
-            var podLoc = "https://www.tnt.com/api/v1/shipment/confidentialDetails?conNumber=" + conNumber + "&consignmentKey=" + conKey + "&securityQuestionType=accountNumber&securityQuestionValue=" + accountNumber + "&shipmentId=" + shipId
+            //var podLoc = "https://www.tnt.com/api/v1/shipment/confidentialDetails?conNumber=" + conNumber + "&consignmentKey=" + conKey + "&securityQuestionType=accountNumber&securityQuestionValue=" + accountNumber + "&shipmentId=" + shipId
 
             //Find existing consignment:
             for (let i = 0; i < results.length; i++) {
@@ -484,6 +484,7 @@ function retrievePOD(orderObj) {
 
                 //RetrievePOD
                 openPOD(logData);
+                console.warn("REACHED THIS POINT 487");
                 jsonRetrieve(podLoc, openPODImage, logData);
             } catch (e) {
                 openPOD(logData);

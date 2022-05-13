@@ -874,7 +874,6 @@ function searchCon(orderObj) {
 
 function jsonRetrieve(url, callback, msg) {
     console.info("Function: jsonRetrieve - url = " + url);
-
     //statBar("Retrieving " + url);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -894,7 +893,12 @@ function jsonRetrieve(url, callback, msg) {
         }
     };
     xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    try {
+        xmlhttp.send();
+    } catch (e) {
+        console.error("Retrieve Error: " + e);
+    }
+    
 
 }
 

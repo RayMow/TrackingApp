@@ -486,7 +486,6 @@ function retrievePOD(orderObj) {
                 openPOD(logData);
                 jsonRetrieve(podLoc, openPODImage, logData);
             } catch (e) {
-                advanceProgBar();
                 openPOD(logData);
             }
 
@@ -686,6 +685,7 @@ function colorDate(dateObj) {
 
 function openPOD(logData) {
     console.info("Function: openPOD");
+    advanceProgBar();
 
     var orderNumber = logData[1];
     var conNumber = logData[2]

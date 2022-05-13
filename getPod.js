@@ -874,31 +874,30 @@ function searchCon(orderObj) {
 
 function jsonRetrieve(url, callback, msg) {
     console.info("Function: jsonRetrieve - url = " + url);
-    //statBar("Retrieving " + url);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var retrievedObject = JSON.parse(this.responseText);
-            var status = this.statusText
-            console.info("Success - status: " + status);
-            //advanceProgBar();
-            callback(retrievedObject, msg);
-        } else {
-            console.info("Failed Status: " + this.status + " (" + this.statusText + ")");
-            if (this.status != 200 && this.status != 0) {
-                statBar("Failed to Retreive " + url + " Status: " + status, true);
-                //alert("POD Retreive Failed \n\nStatus: "+this.statusText+"\n\nCheck account number and order number are correct.");
-                //window.location.reload(true);
-            }
-        }
-    };
-    xmlhttp.open("GET", url, true);
     try {
+        //statBar("Retrieving " + url);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var retrievedObject = JSON.parse(this.responseText);
+                var status = this.statusText
+                console.info("Success - status: " + status);
+                //advanceProgBar();
+                callback(retrievedObject, msg);
+            } else {
+                console.info("Failed Status: " + this.status + " (" + this.statusText + ")");
+                if (this.status != 200 && this.status != 0) {
+                    statBar("Failed to Retreive " + url + " Status: " + status, true);
+                    //alert("POD Retreive Failed \n\nStatus: "+this.statusText+"\n\nCheck account number and order number are correct.");
+                    //window.location.reload(true);
+                }
+            }
+        };
+        xmlhttp.open("GET", url, true);
         xmlhttp.send();
     } catch (e) {
         console.error("Retrieve Error: " + e);
     }
-    
 
 }
 
@@ -977,7 +976,7 @@ function showPinned(podId) {
                     thisComment.parentElement.style.display = "block";
                     thisComment.innerHTML = pinComment;
 
-            
+
 
                     //thisComment.ondblclick = function () { openDynamics(taskGuid) };
                     //dueDate.value = pinDate;

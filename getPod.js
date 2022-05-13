@@ -484,9 +484,9 @@ function retrievePOD(orderObj) {
 
                 //RetrievePOD
                 openPOD(logData);
-                console.warn("REACHED THIS POINT 487");
                 jsonRetrieve(podLoc, openPODImage, logData);
             } catch (e) {
+                console.warn("REACHED THIS POINT 490");
                 openPOD(logData);
             }
 
@@ -813,7 +813,9 @@ function retrieveOrder(orderNo, searchMode) {
     if (searchMode === "order") {
         if (orderNo !== null) {
             var orderUrl = "https://www.tnt.com/api/v3/shipment?ref=" + orderNo + "-1&searchType=REF"
+            //var gateWayUrl = "https://gateway.carousel.eu/Booking/Booking/GetBookingList?sort=&filter=&bookingSearch.SearchBooking="+ orderNo +"&bookingSearch.BookingType=0&bookingSearch.BookingStatus=0&bookingSearch.LaneRequired=false";
             jsonRetrieve(orderUrl, searchCon);
+            //jsonRetrieve(gateWayUrl, searchGateway);
             saveToHistory(orderNo, searchMode);
         } else {
             alert('Order Not Found');
@@ -842,6 +844,11 @@ function retrieveOrder(orderNo, searchMode) {
         }
     }
 }
+
+// function searchGateway(gatewayObj) {
+//     console.warn('GATEWAY RETREIVE');
+//     console.log(gatewayObj);
+// }
 
 function searchCon(orderObj) {
     console.info("Function: searchCon");

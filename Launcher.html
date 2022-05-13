@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <META content="IE=5.0000" http-equiv="X-UA-Compatible">
+    <TITLE>Tracking Launcher</TITLE>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript">
+        function load() {
+            window.name = "cpukcrm";
+        }
+function launchTracking(context) {
+    //alert(window.name);
+   trackingApp =  window.open('https://raymow.github.io/TrackingApp/', '_blank', 'location=yes,height=1000,width=500,scrollbars=yes,status=no');
+}
+    </script>
+    <style type="text/css">
+        button {
+            list-style-type: none;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: normal;
+            font-size: 14px;
+            font-family: 'SegoeUI', 'Segoe UI';
+            -webkit-appearance: button;
+            overflow: visible;
+            border-radius: inherit;
+            align-items: center;
+            cursor: pointer;
+            background-color: transparent;
+            height: 3rem;
+            line-height: 1rem;
+            border-width: 0px;
+            padding-left: 0.857142rem;
+            padding-right: 0.857142rem;
+            outline: none;
+            display: flex;
+            outline-color: rgb(102, 102, 102);
+            margin: auto;
+        }
+        button:hover{
+            background-color: #d8d8d8;
+        }
+        
+    </style>
+</head>
+
+<body onload="load()">
+
+
+    <button id="launchButton" type="button" style="outline-color: rgb(102, 102, 102);" onclick="launchTracking(this)">
+
+        <span class="">Tracking</span>
+
+    </button>
+
+
+</body>
+
+</html>

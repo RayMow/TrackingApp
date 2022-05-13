@@ -486,7 +486,7 @@ function retrievePOD(orderObj) {
                 openPOD(logData);
                 jsonRetrieve(podLoc, openPODImage, logData);
             } catch (e) {
-                console.warn("REACHED THIS POINT 490");
+                advanceProgBar();
                 openPOD(logData);
             }
 
@@ -874,7 +874,6 @@ function searchCon(orderObj) {
 
 function jsonRetrieve(url, callback, msg) {
     console.info("Function: jsonRetrieve - url = " + url);
-    try {
         //statBar("Retrieving " + url);
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -882,7 +881,6 @@ function jsonRetrieve(url, callback, msg) {
                 var retrievedObject = JSON.parse(this.responseText);
                 var status = this.statusText
                 console.info("Success - status: " + status);
-                //advanceProgBar();
                 callback(retrievedObject, msg);
             } else {
                 console.info("Failed Status: " + this.status + " (" + this.statusText + ")");
@@ -895,10 +893,6 @@ function jsonRetrieve(url, callback, msg) {
         };
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
-    } catch (e) {
-        console.error("Retrieve Error: " + e);
-    }
-
 }
 
 function advanceProgBar() {

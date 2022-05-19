@@ -296,7 +296,8 @@ function addBadge(count) {
 
 
 function quietCheckForUpdates(orderObj) {
-
+    var indicator = document.getElementById('quietLoadButton');
+    //indicator.style.transform = "rotateX(360deg)";
     try {
 
         //Detect Multiple
@@ -381,7 +382,6 @@ function quietCheckForUpdates(orderObj) {
     } catch (e) {
         //nothing
     }
-
 
 }
 
@@ -874,44 +874,49 @@ function searchCon(orderObj) {
 
 function jsonRetrieve(url, callback, msg) {
     console.info("Function: jsonRetrieve - url = " + url);
-        //statBar("Retrieving " + url);
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var retrievedObject = JSON.parse(this.responseText);
-                var status = this.statusText
-                console.info("Success - status: " + status);
-                callback(retrievedObject, msg);
-            } else {
-                console.info("Failed Status: " + this.status + " (" + this.statusText + ")");
-                if (this.status != 200 && this.status != 0) {
-                    statBar("Failed to Retreive " + url + " Status: " + status, true);
-                    //alert("POD Retreive Failed \n\nStatus: "+this.statusText+"\n\nCheck account number and order number are correct.");
-                    //window.location.reload(true);
-                }
+    //statBar("Retrieving " + url);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var retrievedObject = JSON.parse(this.responseText);
+            var status = this.statusText
+            console.info("Success - status: " + status);
+            callback(retrievedObject, msg);
+        } else {
+            console.info("Failed Status: " + this.status + " (" + this.statusText + ")");
+            if (this.status != 200 && this.status != 0) {
+                statBar("Failed to Retreive " + url + " Status: " + status, true);
+                //alert("POD Retreive Failed \n\nStatus: "+this.statusText+"\n\nCheck account number and order number are correct.");
+                //window.location.reload(true);
             }
-        };
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
 }
 
 function advanceProgBar() {
-    //progBarIncrement = 100 / progLimit
-    var bar = document.getElementById('progbar');
-    var barPercent = bar.style.width;
-    var currentValue = barPercent.slice(0, -1);
-    //alert(currentValue);
-    var newValue = Number(currentValue) + progBarIncrement
-    //alert(progBarIncrement);
-    bar.style.width = newValue + '%';
-    //document.getElementById("loadMessage").innerHTML = newValue + '%';
-    if (newValue >= 99) {
-        sortGroups();
-        setTimeout(function () { off() }, 1000);
-        window.scrollBy(0, -5000);
-        //bar.style.width = '0%';
+    try {
+        //progBarIncrement = 100 / progLimit
+        var bar = document.getElementById('progbar');
+        var barPercent = bar.style.width;
+        var currentValue = barPercent.slice(0, -1);
+        //alert(currentValue);
+        var newValue = Number(currentValue) + progBarIncrement
+        //alert(progBarIncrement);
+        bar.style.width = newValue + '%';
+        //document.getElementById("loadMessage").innerHTML = newValue + '%';
+        if (newValue >= 99) {
+            sortGroups();
+            setTimeout(function () { off() }, 1000);
+            window.scrollBy(0, -5000);
+            //bar.style.width = '0%';
+
+        }
+    } catch (e) {
 
     }
+
 }
 
 function enableDisableControls() {

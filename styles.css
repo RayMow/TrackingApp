@@ -406,6 +406,8 @@
 			border-color: gainsboro;
 			font-size: 12;
 			padding: 1px;
+			transition: transform 1s;
+			transform-style: preserve-3d;
 		}
 
 		#quietLoadButton:hover {

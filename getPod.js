@@ -173,17 +173,18 @@ function switchQuietLoad() {
         window.clearInterval(quietLoader);
         quietLoadOn = false;
         document.getElementById("quietLoadButton").style.backgroundColor = "rgba(255, 255, 255, 0.7)";
-        document.getElementById("quietLoadButton").innerText = "QuietLoad Off";
+        document.getElementById("quietLoadButton").innerText = "Auto check";
         console.log("Quiet Load off.");
         localStorage.setItem("quietLoad", false);
 
     } else {
         //Switch on
         quietLoad();
-        quietLoader = window.setInterval(quietLoad, 50000);
+		//Run every 2 minutes
+        quietLoader = window.setInterval(quietLoad, 120000);
         quietLoadOn = true;
         document.getElementById("quietLoadButton").style.backgroundColor = "rgba(154, 205, 50, 0.5)";
-        document.getElementById("quietLoadButton").innerText = "QuietLoad On";
+        document.getElementById("quietLoadButton").innerText = "Auto checking";
         console.log("Quiet Load on.");
         document.getElementById("quietLoadButton").style.animation = "quietLoading 5s ease";
         localStorage.setItem("quietLoad", true);
@@ -403,21 +404,21 @@ function retrievePOD(orderObj) {
         pdGrp.consignment = conNum;
         var podDataComment = "<small>" + getDateTime(new Date()) + " Consignment " + conNum + " returned " + conLength + " records</small>"
         var tntUrl = "https://www.tnt.com/express/en_gb/site/shipping-tools/tracking.html?searchType=con&cons=" + conNum;
-        var cslUrl = "https://web.carousel.eu/easyweb/default.asp?action=webtrack&trackNumber=" + conNum;
-        //var crmUrl = "https://cpuk.crm11.dynamics.com/main.aspx?etn=task&id=" + guid + "&newWindow=true&pagetype=entityrecord";
+        var cslUrl = "" + conNum;
+
 
         //Check if group is already existing...
         if (document.getElementById(conNum)) {
             statBar('pod group exists...');
             //Clear exising pods
-            document.getElementById(conNum).innerHTML = "<div class='sortCode'></div><div class='commentContainer'><textarea class='comment' id='" + conNum + "comment' onchange='saveComment(this.parentElement.parentElement.id)'>(Comment)</textarea></div><span id='" + conNum + "pin' class='pin' onclick='pinMe(this)' style=''>&#128204;</span><span class='controlBtn' onclick='closeMe(this)' style='position: absolute;top: 8px; right: 16px;'>&times;</span>" + podDataComment + "</br></br>Track with <a href='" + tntUrl + "' target='blank'> <img src='https://www.tnt.com/__images/favicon.ico' alt='TNT' ></a>    <a href='" + cslUrl + "' target='blank'> <img src='https://www.carousel.eu/favicon.ico' alt='CSL'style='height: 16px;' ></a><a onClick='openDynamics(this)' target='blank'> <img src='https://www.microsoft.com/favicon.ico' alt='CRM' style='height: 16px;'></a>"
+            document.getElementById(conNum).innerHTML = "<div class='sortCode'></div><div class='commentContainer'><textarea class='comment' id='" + conNum + "comment' onchange='saveComment(this.parentElement.parentElement.id)'>(Comment)</textarea></div><span id='" + conNum + "pin' class='pin' onclick='pinMe(this)' style=''>&#128204;</span><span class='controlBtn' onclick='closeMe(this)' style='position: absolute;top: 8px; right: 16px;'>&times;</span>" + podDataComment + "</br></br>Track with <a href='" + tntUrl + "' target='blank'> <img src='https://www.tnt.com/__images/favicon.ico' alt='TNT' ></a>"
             //location.href = "#" + conNum;
             //Promote to top
             document.getElementById('output').insertBefore(document.getElementById(conNum), document.getElementById('output').firstElementChild);
         } else {
             //add podGroup
             var existing = document.getElementById("output").innerHTML;
-            var podgrp = "<div class='podGroup' id='" + conNum + "' onClick=this.style.borderColor='#d7d7d7'><div class='sortCode'></div><div class='commentContainer'><textarea class='comment' id='" + conNum + "comment' onchange='saveComment(this.parentElement.parentElement.id)'>(Comment)</textarea></div><span id='" + conNum + "pin' class='pin' onclick='pinMe(this)' style=''>&#128204;</span><span class='controlBtn' onclick='closeMe(this)' style='position: absolute;top: 8px; right: 16px;'>&times;</span>" + podDataComment + "</br></br>Track with <a href='" + tntUrl + "' target='blank'> <img src='https://www.tnt.com/__images/favicon.ico' alt='TNT' ></a>    <a href='" + cslUrl + "' target='blank'> <img src='https://www.carousel.eu/favicon.ico' alt='CSL' style='height: 16px;'></a><a onClick='openDynamics(this)' target='blank'> <img src='https://www.microsoft.com/favicon.ico' alt='CRM' style='height: 16px;'></a></div>" + existing
+            var podgrp = "<div class='podGroup' id='" + conNum + "' onClick=this.style.borderColor='#d7d7d7'><div class='sortCode'></div><div class='commentContainer'><textarea class='comment' id='" + conNum + "comment' onchange='saveComment(this.parentElement.parentElement.id)'>(Comment)</textarea></div><span id='" + conNum + "pin' class='pin' onclick='pinMe(this)' style=''>&#128204;</span><span class='controlBtn' onclick='closeMe(this)' style='position: absolute;top: 8px; right: 16px;'>&times;</span>" + podDataComment + "</br></br>Track with <a href='" + tntUrl + "' target='blank'> <img src='https://www.tnt.com/__images/favicon.ico' alt='TNT' ></a></div>" + existing
             document.getElementById("output").innerHTML = podgrp;
         }
 
@@ -504,11 +505,11 @@ function retrievePOD(orderObj) {
 //from page onload
 function loadFuturePin(uinput, commentText) {
     var existing = document.getElementById("output").innerHTML;
-    var cslUrl = "https://web.carousel.eu/easyweb/default.asp?action=webtrack&trackNumber=" + uinput;
-    var futurePin = "<div class='futurePin' id='" + uinput + "' onload='futurePinLoad(" + uinput + ")'><b>" + uinput +
+    var cslUrl = "" + uinput;
+  var futurePin = "<div class='futurePin' id='" + uinput + "' onload='futurePinLoad(" + uinput + ")'><b>" + uinput +
         "</b><span class='controlBtn' onclick='unFuturePin(this)' style='position: absolute;top: 8px; right: 16px;'>&times;</span><textarea class='comment' id='" +
-        uinput + "comment' onchange='saveFutureComment(this.parentElement.id)'>" + commentText + "</textarea><a href='" +
-        cslUrl + "' target='blank' style='text-decoration:none;'> <img src='https://www.carousel.eu/favicon.ico' alt='CSL' style='height: 16px;'></a></div>" + existing;
+        uinput + "comment' onchange='saveFutureComment(this.parentElement.id)'>" + commentText + "</textarea></div>" + existing;
+
 
     document.getElementById("output").innerHTML = futurePin;
     //See if records exist...
@@ -713,7 +714,7 @@ function openPOD(logData) {
     }
     //var existing =  document.getElementById("output").innerHTML;
     var trackUrl = "https://www.tnt.com/express/en_gb/site/shipping-tools/tracking.html?searchType=con&cons=" + logData[2];
-    var cslUrl = "https://web.carousel.eu/easyweb/default.asp?action=clienttrack&acct1=COM04&acct2=COM04S&acct3=COM04E&acct4=COM04I&type=Consign&reference=" + logData[2];
+    var cslUrl = ""
 
     var podGroup = document.getElementById(logData[2]);
     //Set Sort Code
@@ -977,7 +978,6 @@ function showPinned(podId) {
 
 
 
-                    //thisComment.ondblclick = function () { openDynamics(taskGuid) };
                     //dueDate.value = pinDate;
                     //dueDate.defaultValue = pinDate;
                     //dateDisplay.style.display = "block";
@@ -989,30 +989,6 @@ function showPinned(podId) {
             }
         }
     }
-}
-
-function openDynamics(item) {
-    console.info("openDynamics: " + item.parentElement.id);
-    var podId = item.parentElement.id
-    if (typeof (Storage) !== "undefined") {
-        //Pin list Exists
-        if (localStorage.getItem("PinnedPods")) {
-            var pinList = localStorage.getItem("PinnedPods");
-            var pinArray = pinList.split(",");
-
-            for (i = 0; i < pinArray.length; i++) {
-                var pinData = pinArray[i].split("|");
-                var pinId = pinData[0];
-
-                if (pinId === podId) {
-                    var crmId = pinData[4];
-                    var taskUrl = "https://cpuk.crm11.dynamics.com/main.aspx?etn=task&id=" + crmId + "&newWindow=true&pagetype=entityrecord";
-                    window.open(taskUrl, '_blank', 'location=yes,height=1000,width=1200,scrollbars=yes,status=yes');
-                }
-            }
-        }
-    }
-
 }
 
 function saveComment(podId) {
@@ -1208,7 +1184,7 @@ function pinMe(thisPin) {
     if (thisPin.style.transform.length < 1) {
         //Pin it
         //CRM Task id
-        var taskGuid = prompt("Enter crm task id (with curly braces)", "{0550B684-1B6E-EC11-8943-000D3A870ED2}");
+        var taskGuid = "";
         thisPin.style.transform = "rotateZ(270deg)";
         thisPin.style.opacity = "1.0";
         comment.style.display = "block";

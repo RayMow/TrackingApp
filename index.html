@@ -39,7 +39,7 @@
 	<div id="overlay">
 		<div id="helpDiv" class="infoModal">
 			<span class="controlBtn" onclick="off('helpDiv')" style='position: absolute; right: 16px;'>&times;</span>
-			<span id="accountNo" onclick="setAccountNum()">Current Account: (Click to change)</span>
+			<span id="accountNo" onclick="setAccountNum()">Current Account: (Click here to change)</span>
 			<h1>Help</h1>
 			<hr>
 			<h2>How to retrieve a POD</h2>
@@ -56,18 +56,16 @@
 			<ul>
 				<li><b>Account Number</b> – Current TNT account number. Click to change/update. NOTE: No retrieve will
 					be possible if this is incorrect.</li>
-				<li><span class="icon">&#8635;</span><b>POD Refresh Button</b> – Reload the selected POD from TNT.com
-					(refreshing the entire page will clear all the displayed PODs unless they are pinned.)</li>
 				<li><span class="icon" style="font-size: 15px;">&#128204;</span><b>Pin Button</b> – Pin the selected POD
 					and add a comment note so it will be retrieved whenever the page is loaded. Click again to unpin.
 				</li>
 				<li><b>POD image</b> – Double click to view in a new window.</li>
 				<li><a href='#'><img src='https://www.tnt.com/__images/favicon.ico'></a><a href='#'
-						style="margin-right:8px;"><img src='https://www.carousel.eu/favicon.ico'
-							style="height: 35px;"></a> <b>Tracking
-						Buttons</b> – Click to view tracking on either TNT.com or Carousel.eu</li>
+						style="margin-right:8px;"></a> <b>Tracking
+						Button</b> – Click to view tracking on TNT.com</li>
 				<li><span class="icon">&#9993;</span><b>Email Button</b> – Click to open a pre-filled email to sales@.
 					NOTE: You will need to manually copy and paste the actual POD image into the email.</li>
+				<li><b>Auto check Button</b> – Click to automaticaly check for updates every couple minutes and notify you when a change occurs.</li>
 			</ul>
 			<h2>Troubleshooting</h2>
 			If no record is loaded when you search, check:
@@ -95,7 +93,7 @@
 		<div id="loadMessage">&#9862;</div>
 		<button type="button" onclick="off();" id="cancelLoad" style="">Cancel</button>
 	</div>
-	<button type="button" onclick="switchQuietLoad();" id="quietLoadButton">QuietLoad</button>
+	<button type="button" onclick="switchQuietLoad();" id="quietLoadButton">Auto check</button>
 </body>
 
 </html>
